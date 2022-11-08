@@ -1,0 +1,105 @@
+################ Function Definitions ################
+
+# Shows the user what options they have
+def displayMenu():
+
+  # This option will involve you adding a student and a collection for their grades to a dictionary!
+  print("1. Add a Student")
+
+  # This option will involve you removing a pair from a dictionary!
+  print("2. Remove a Student")
+
+  # This option will require you to grab a student from a dictionary and add a quiz grade to it's corresponding collection of grades!
+  # You'll also need to use a pre-written function that ensures the user is entering a valid grade (a decimal number)
+  print("3. Add Quiz Grade for Student")
+
+  # This option will require you to use a loop to list all of the grades for an INDIVIDUAL student!
+  print("4. List a Student's Quiz Grades")
+
+  # This option will have you write a function that takes in a student's grade as a number and return the letter grade equivalent!
+  print("5. Get Student's Letter Grade")
+
+  print("6. Quit")
+
+# Prompts the user to enter a numeric grade
+# This function works, and ensures the user entered a valid float for the grade
+# It's not important HOW this function works, but how to USE this function
+def getNumberGradeFromUser():
+
+  val = None
+#While code
+  while(val == None):
+    try:
+      #Float for grade
+      test = float(input("Enter a Grade: "))
+      #make val var = to test
+      val = test
+    except:
+      val = None
+  #return val
+  return val
+
+################ Main Program ################
+
+# Application Loop
+menuOption = ""
+
+studentDict = {}
+  
+while menuOption != "6":
+
+  # Prompt the user to select an option
+  print()
+  displayMenu()
+
+  menuOption = input("Select a number from the menu:  ")
+
+  #if loop
+  if menuOption == "1":
+    #if input is 1: prompt
+    input1 = input("Enter student name:   ")
+    studentDict[input1] = []
+  #elif if 2
+  elif menuOption == "2":
+    #Enter name to remove
+    input2 = input("Enter a student name to remove:  ")
+    #if name is a key in dict
+    if input2 in studentDict:
+      #remove that student
+      studentDict.pop(input2)
+    else:
+      print("Name does not exist")
+      
+  #if 3
+  if menuOption == "3":
+    #enter a name 
+    student = input("Enter student name: ")
+    #if student exists in student dict
+    if student in studentDict:
+      #input for option 3 is = to getnumber func
+      input3 = getNumberGradeFromUser()
+      #append grade as value, to student (key) in studentdict
+      studentDict[student].append(input3)
+
+  #if 4    
+  if menuOption == "4":
+    input4 = input("Enter students name to retrieve grades:   ")
+    if input4 in studentDict:
+      print(f"{input4}'s quiz grades:")
+      #for value with student(key) 
+      for grade in studentDict[input4]:
+        #print the value
+        print(grade)
+        
+  #If 5
+  if menuOption == "5":
+    input5 = input("enter student name")
+    #for loop to grab value for the student
+    for grade in studentDict[input5]:
+      print(grade)
+      
+    
+    
+print(studentDict)
+    
+
